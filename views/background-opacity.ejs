@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      .container:before {
+        content: "";
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: -1;
+
+        display: block;
+        background: url('/images/background.JPG') no-repeat center center fixed;
+        width: 100%;
+        height: 100%;
+
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        opacity: 0.4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center">
+        <div class="announcement circle">
+          <p class="top">Kine &amp; Iver</p>
+          <p class="date center">26.06.15 - 28.06.15</p>
+          <p class="bottom">Save the date</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
