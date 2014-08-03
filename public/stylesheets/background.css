@@ -1,0 +1,9 @@
+body {
+    padding: 50px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
