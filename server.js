@@ -4,6 +4,7 @@ var express = require('express');
 var fs      = require('fs');
 var mongodb = require('mongodb');
 var path    = require('path');
+var lessMiddleware = require('less-middleware');
 
 var App = function(){
 
@@ -101,11 +102,15 @@ var App = function(){
   // override with POST having ?_method=DELETE
   self.app.use(methodOverride('_method'))
 
+
+
   //Views
   self.app.set('views', path.join(__dirname, 'views'));
   self.app.set('view engine', 'ejs');
 
   //Static files
+
+  self.app.use(lessMiddleware(path.join(__dirname + '/public')));
   self.app.use(express.static(path.join(__dirname, 'public')));
 
   var routes = require('./routes/index');

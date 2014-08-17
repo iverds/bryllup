@@ -3,8 +3,7 @@
   <head>
     <title><%= title %></title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/background.css' />
+    <link rel='stylesheet' href='/stylesheets/css/style.css' />
     <script src='javascripts/jquery.min.js' type='text/javascript'></script>
     <script src='javascripts/scroll.js' type='text/javascript'></script>
   </head>
@@ -17,24 +16,23 @@
       <span class="arrow-down"> </span>
     </div> -->
 
+    <div class="somebackground">
+      <div class="menu-circle menu-friday" data-menu-button="friday"><p class="relative-center">Fredag</p></div>
+      <div class="menu-circle menu-saturday" data-menu-button="saturday"><p class="relative-center">Lørdag</p></div>
+      <div class="menu-circle menu-sunday"data-menu-button="sunday"><p class="relative-center">Søndag</p></div>
+    </div>
 
 
 
-
-    <article class="container hytta">
+    <article class="slide main active" data-slide="main">
       <div class="center">
-        <div class="announcement circle">
-          <p class="top">Kine &amp; Iver</p>
-          <p class="date center">26.06.15 - 28.06.15</p>
-          <p class="bottom">Save the date</p>
-        </div>
       </div>
       <footer>
         <div class="rotated-background"></div>
-        <p class="next-text">Fredag - Skogstad Gård</p>
+        <p class="next-text">Vi gifter oss!</p>
       </footer>
     </article>
-    <article class="container helgaker">
+    <article class="slide friday" data-slide="friday">
       <div class="center">
         <div class="announcement circle">
           <p class="top">Fredag 26.06.15</p>
@@ -43,7 +41,34 @@
         </div>
       </div>
       <footer>
-        <p></p>
+        <div class="rotated-background"></div>
+        <p class="next-text">Vi gifter oss!</p>
+      </footer>
+    </article>
+    <article class="slide saturday" data-slide="saturday">
+      <div class="center">
+        <div class="announcement circle">
+          <p class="top">Lørdag 27.06.15</p>
+          <p class="date center">Bryllup</p>
+          <p class="bottom">Her blir det fest!</p>
+        </div>
+      </div>
+      <footer>
+        <div class="rotated-background"></div>
+        <p class="next-text">Vi gifter oss!</p>
+      </footer>
+    </article>
+    <article class="slide sunday" data-slide="sunday">
+      <div class="center">
+        <div class="announcement circle">
+          <p class="top">Søndag 26.06.15</p>
+          <p class="date center">Helgaker</p>
+          <p class="bottom">Frokost</p>
+        </div>
+      </div>
+      <footer>
+        <div class="rotated-background"></div>
+        <p class="next-text">Vi gifter oss!</p>
       </footer>
     </article>
   </div>
