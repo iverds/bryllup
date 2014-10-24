@@ -28,6 +28,8 @@
     "method-override": "> 1.0.0",
     "mongodb": "> 1.1.10",
     "morgan": "~1.0.0",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
     "static-favicon": "~1.0.0"
   },
   "devDependencies": {},

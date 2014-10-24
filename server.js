@@ -6,6 +6,12 @@ var mongodb = require('mongodb');
 var path    = require('path');
 var lessMiddleware = require('less-middleware');
 
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+
+
+
 var App = function(){
 
   // Scope
@@ -17,78 +23,24 @@ var App = function(){
   self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME || "root";
   self.dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD || "mycomplexpassword";
 
-  self.ipaddr  = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-  self.port    = parseInt(process.env.OPENSHIFT_NODEJS_PORT) || 8080;
+  self.ipaddr  = process.env.OPENSHIFT_NODEJS_IP || "www.kineogiver.no";
+  self.port    = parseInt(process.env.OPENSHIFT_NODEJS_PORT) || 80;
   if (typeof self.ipaddr === "undefined") {
     console.warn('No OPENSHIFT_NODEJS_IP environment variable');
   };
-
-
-  // Web app logic
-  // self.routes = {};
-  // self.routes['health'] = function(req, res){ res.send('1'); };
-  //
-  // //default response with info about app URLs
-  // self.routes['root'] = function(req, res){
-  //   res.send('You have come to the park apps web service. All the web services are at /ws/parks*. \
-  //     For example /ws/parks will return all the parks in the system in a JSON payload. \
-  //     Thanks for stopping by and have a nice day');
-  // };
-  //
-  // //returns all the parks in the collection
-  // self.routes['returnAllParks'] = function(req, res){
-  //   self.db.collection('parkpoints').find().toArray(function(err, names) {
-  //     res.header("Content-Type:","application/json");
-  //     res.end(JSON.stringify(names));
-  //   });
-  // };
-  //
-  // //find a single park by passing in the objectID to the URL
-  // self.routes['returnAPark'] = function(req, res){
-  //     var BSON = mongodb.BSONPure;
-  //     var parkObjectID = new BSON.ObjectID(req.params.id);
-  //     self.db.collection('parkpoints').find({'_id':parkObjectID}).toArray(function(err, names){
-  //       res.header("Content-Type:","application/json");
-  //       res.end(JSON.stringify(names));
-  //     });
-  // }
-  //
-  // //find parks near a certain lat and lon passed in as query parameters (near?lat=45.5&lon=-82)
-  // self.routes['returnParkNear'] = function(req, res){
-  //   //in production you would do some sanity checks on these values before parsing and handle the error if they don't parse
-  //   var lat = parseFloat(req.query.lat);
-  //   var lon = parseFloat(req.query.lon);
-  //   self.db.collection('parkpoints').find( {"pos" : {$near: [lon,lat]}}).toArray(function(err,names){
-  //     res.header("Content-Type:","application/json");
-  //     res.end(JSON.stringify(names));
-  //   });
-  // };
-  //
-  // //find parks near a certain park name, lat and lon (name?lon=10&lat=10)
-  // self.routes['returnParkNameNear'] = function(req, res){
-  //   //in production you would do some sanity checks on these values before parsing and handle the error if they don't parse
-  //   var lat = parseFloat(req.query.lat);
-  //   var lon = parseFloat(req.query.lon);
-  //   var name = req.params.name;
-  //   self.db.collection('parkpoints').find( {"Name" : {$regex : name, $options : 'i'}, "pos" : { $near : [lon,lat]}}).toArray(function(err,names){
-  //     res.header("Content-Type:","application/json");
-  //     res.end(JSON.stringify(names));
-  //   });
-  // };
-  //
-  // //saves new park
-  // self.routes['postAPark'] = function(req, res){
-  //   //in production you would do some sanity checks on these values before parsing and handle the error if they don't parse
-  //   var lat = parseFloat(req.body.lat);
-  //   var lon = parseFloat(req.body.lon);
-  //   var name = req.body.name;
-  //   self.db.collection('parkpoints').insert( {'Name' : name, 'pos' : [lon,lat]}, {w:1}, function(err, records){
-  //   if (err) { throw err; }
-  //   res.end('success');
-  //   });
-  // };
-
-
+  passport.use(new FacebookStrategy({
+    clientID: 717673741651316,
+    clientSecret: "94ec650e36c855428c7201800131cda0",
+    callbackURL: "http://www.kineogiver.no/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log(profile)
+    /*User.findOrCreate(..., function(err, user) {
+      if (err) { return done(err); }
+      done(null, user);
+    });*/
+  }
+  ));
   // Web app urls
   self.app  = express();
 
@@ -116,14 +68,20 @@ var App = function(){
   var routes = require('./routes/index');
 
   self.app.use('/', routes);
-  //define all the url mappings
-  // self.app.get('/health', self.routes['health']);
-  // self.app.get('/', self.routes['root']);
-  // self.app.get('/ws/parks', self.routes['returnAllParks']);
-  // self.app.get('/ws/parks/park/:id', self.routes['returnAPark']);
-  // self.app.get('/ws/parks/near', self.routes['returnParkNear']);
-  // self.app.get('/ws/parks/name/near/:name', self.routes['returnParkNameNear']);
-  // self.app.post('/ws/parks/park', self.routes['postAPark']);
+
+  // Redirect the user to Facebook for authentication.  When complete,
+  // Facebook will redirect the user back to the application at
+  //     /auth/facebook/callback
+  self.app.get('/auth/facebook', passport.authenticate('facebook'));
+
+  // Facebook will redirect the user to this URL after approval.  Finish the
+  // authentication process by attempting to obtain an access token.  If
+  // access was granted, the user will be logged in.  Otherwise,
+  // authentication has failed.
+  self.app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { successRedirect: '/',
+                                        failureRedirect: '/login' }));
+
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
