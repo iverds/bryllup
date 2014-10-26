@@ -32,7 +32,7 @@ $(function() {
         scrollPrev();
       }
     }
-    
+
     function calculatePosition(slide) {
       return "-" + (slide.number * 100 + slide.number *2) + "%"
     }
@@ -43,12 +43,12 @@ $(function() {
         $(".menu-circle").css("opacity", "0.5")
         var currentActive = $(".active")
         var slide = menu[nextActive.data("slide")];
+        $(".menu-" + nextActive.data("slide")).css("opacity", "1");
         $(".wrapper").animate({
           top: calculatePosition(slide),
         }, 2000, function() {
           nextActive.addClass("active")
           currentActive.removeClass("active")
-          $(".menu-" + nextActive.data("slide")).css("opacity", "1");
           scrolling = false;
         });
       }
