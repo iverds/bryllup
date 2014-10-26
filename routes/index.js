@@ -7,7 +7,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/background', function(req, res) {
-  res.render('background', { title: 'Kine og Iver' });
+  res.render('background', { title: 'Kine og Iver', user: req.user });
 });
 
 router.get('/background-blur', function(req, res) {

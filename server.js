@@ -5,8 +5,10 @@ var fs      = require('fs');
 var mongodb = require('mongodb');
 var path    = require('path');
 var lessMiddleware = require('less-middleware');
-
+var session = require('express-session')
 var passport = require('passport');
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 
@@ -34,7 +36,10 @@ var App = function(){
     callbackURL: "http://www.kineogiver.no/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile)
+    console.log(accessToken);
+    console.log(refreshToken);
+    console.log(profile);
+    done(null, profile);
     /*User.findOrCreate(..., function(err, user) {
       if (err) { return done(err); }
       done(null, user);
@@ -64,6 +69,11 @@ var App = function(){
 
   self.app.use(lessMiddleware(path.join(__dirname + '/public')));
   self.app.use(express.static(path.join(__dirname, 'public')));
+  self.app.use(cookieParser());
+  self.app.use(bodyParser());
+  self.app.use(session({ secret: 'keyboard cat' }));
+  self.app.use(passport.initialize());
+  self.app.use(passport.session());
 
   var routes = require('./routes/index');
 
@@ -82,6 +92,14 @@ var App = function(){
     passport.authenticate('facebook', { successRedirect: '/',
                                         failureRedirect: '/login' }));
 
+
+  passport.serializeUser(function(user, done) {
+    done(null, user.name);
+  });
+
+  passport.deserializeUser(function(id, done) {
+      done(null, id);
+  });
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
   self.connectDb = function(callback){
