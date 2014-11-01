@@ -2,12 +2,8 @@ $(function() {
     var scrolling = false;
     var menu = {"main" : {"number" : 0}, "friday": {"number" : 1}, "saturday": {"number" : 2}, "sunday": { "number" : 3}}
     $(window).bind('mousewheel', function(event, delta) {
-      if(event.originalEvent.wheelDelta <= 0 ) {
-        scrollNext();
-      }
-      else {
-        scrollPrev();
-      }
+      if(event.originalEvent.wheelDelta <= 0 ) {  scrollNext();  }
+      else { scrollPrev(); }
       return false;
     });
 
@@ -20,58 +16,48 @@ $(function() {
     })
 
 
-    $(document).on('keypress',scrollKeys);
-    $(document).on('keydown',scrollKeys);
+    $(document).on('keypress', scrollKeys);
+    $(document).on('keydown', scrollKeys);
 
 
     function scrollKeys(e) {
-      e.preventDefault();
       if(e.keyCode == 40) {
+        e.preventDefault();
         scrollNext();
       } else if (e.keyCode == 38) {
+        e.preventDefault();
         scrollPrev();
       }
     }
 
-    function calculatePosition(slide) {
-      return "-" + (slide.number * 100 + slide.number *2) + "%"
-    }
 
-    function scroll(nextActive) {
-      if(!scrolling) {
+
+    function scroll(nextSlide) {
+      if(!scrolling && nextSlide.length !== 0) {
         scrolling = true;
         $(".menu-circle").css("opacity", "0.5")
-        var currentActive = $(".active")
-        var slide = menu[nextActive.data("slide")];
-        $(".menu-" + nextActive.data("slide")).css("opacity", "1");
+        var currentSlide = $(".active")
+        $(".menu-" + nextSlide.data("slide")).css("opacity", "1");
         $(".wrapper").animate({
-          top: calculatePosition(slide),
+          top: calculatePosition(nextSlide),
         }, 2000, function() {
-          nextActive.addClass("active")
-          currentActive.removeClass("active")
+          nextSlide.addClass("active")
+          currentSlide.removeClass("active")
           scrolling = false;
         });
       }
     }
 
+    function calculatePosition(slide) {
+      var slideInfo = menu[slide.data("slide")]
+      return "-" + (slideInfo.number * 100 + slideInfo.number *2) + "%"
+    }
+
     function scrollNext() {
-      if(!isBottomSlide()) {
-          scroll($(".active").nextAll(".slide:first"));
-      }
+      scroll($(".active").nextAll(".slide:first"));
     }
 
     function scrollPrev() {
-      if(!isTopSlide()) {
-          scroll($(".active").prevAll(".slide:first"));
-      }
+      scroll($(".active").prevAll(".slide:first"));
     }
-
-    function isTopSlide() {
-      return $(".slide.active").data("slide") === $(".slide:first").data("slide");
-    }
-
-    function isBottomSlide() {
-      return $(".slide.active").data("slide") === $(".slide:last").data("slide");
-    }
-
   });
