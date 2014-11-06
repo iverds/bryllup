@@ -30,7 +30,7 @@ $(function() {
       if(!scrolling && nextSlide.length !== 0) {
         scrolling = true;
         $("html, body").animate({
-          scrollTop: nextSlide.offset().top
+          scrollTop: nextSlide.offset().top - 60
         }, 2000, function() {
           scrolling = false;
         });
