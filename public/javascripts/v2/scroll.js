@@ -14,6 +14,14 @@ $(function() {
         }
       });
     });
+    $(window).on("touchmove", function() {
+      $.each($(".slide"), function(k,v) {
+        if($("body").scrollTop() > $(v).offset().top - $(v).height()/2 && $("body").scrollTop() < $(v).offset().top + $(v).height()/2) {
+          $(".menu-link").css("opacity", "0.5");
+          $(".menu-" + $(v).data("slide")).css("opacity", "1");
+        }
+      });
+    });
 
     function scroll(nextSlide) {
       if(!scrolling && nextSlide.length !== 0) {
