@@ -46,8 +46,7 @@
 }
 
 .info-circle {
-  width: 200px;
-  height: 200px;
+
   float: left;
   border-radius: 50%;
   color: white;
@@ -57,6 +56,18 @@
   -o-background-size: cover;
   background-size: cover;
   z-index: 2;
+
+  @media (min-width: 320px) {
+    width: 100px;
+    height: 100px;
+    margin: 60px 10px;
+  }
+
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+  }
 }
 
 .info-friday {

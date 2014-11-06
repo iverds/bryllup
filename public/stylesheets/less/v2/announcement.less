@@ -9,8 +9,16 @@
 
 .announcement-circle {
   border-radius: 50%;
-  width: 400px;
-  height: 400px;
+
+  @media (min-width: 320px) {
+    width: 250px;
+    height: 250px;
+  }
+
+  @media (min-width: 768px) {
+    width: 400px;
+    height: 400px;
+  }
 }
 
 
@@ -26,12 +34,26 @@
   }
 
   .middle {
-    font-size: 60px;
+    @media (min-width: 320px) {
+      font-size: 40px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 60px;
+    }
   }
 
   .top {
-    margin-top: 70px;
-    font-size: 30px;
+    @media (min-width: 320px) {
+      margin-top: 40px;
+      font-size: 20px;
+    }
+
+    @media (min-width: 768px) {
+      margin-top: 70px;
+      font-size: 30px;
+    }
+
   }
   .bottom {
     margin-bottom: 70px;
