@@ -30,7 +30,7 @@ var App = function(){
   if (typeof self.ipaddr === "undefined") {
     console.warn('No OPENSHIFT_NODEJS_IP environment variable');
   };
-  passport.use(new FacebookStrategy({
+  /*passport.use(new FacebookStrategy({
     clientID: 717673741651316,
     clientSecret: "94ec650e36c855428c7201800131cda0",
     callbackURL: "http://www.kineogiver.no/auth/facebook/callback"
@@ -40,12 +40,12 @@ var App = function(){
     console.log(refreshToken);
     console.log(profile);
     done(null, profile);
-    /*User.findOrCreate(..., function(err, user) {
+    User.findOrCreate(..., function(err, user) {
       if (err) { return done(err); }
       done(null, user);
-    });*/
+    });
   }
-  ));
+));*/
   // Web app urls
   self.app  = express();
 
