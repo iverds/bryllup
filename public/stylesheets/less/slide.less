@@ -1,0 +1,162 @@
+.b-auto-100 {
+  -webkit-background-size: auto 100%;
+  -moz-background-size: auto 100%;
+  -o-background-size: auto 100%;
+  background-size: auto 100%;
+}
+.b-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.slide {
+  position: relative;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /*height: -moz-calc(~"100% - 60px");
+  height: -webkit-calc(~"100% - 60px");
+  height: -o-calc(~"100% - 60px");
+  height: calc(~"100% - 60px");*/
+}
+
+.info-area {
+  position: relative;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 220px;
+  background-color: white;
+}
+
+.info-text {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.info-circle {
+
+  float: left;
+  border-radius: 50%;
+  color: white;
+  margin: 10px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: 2;
+
+  @media (min-width: 320px) {
+    width: 100px;
+    height: 100px;
+    margin: 60px 10px;
+  }
+
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+  }
+}
+
+.info-main {
+  background: url('/images/kiver-sml.jpg') no-repeat center center;
+  .b-cover;
+}
+
+.info-friday {
+  background: url('/images/skogstad-sml.jpg') no-repeat center center;
+}
+
+.info-saturday {
+  background: url('/images/hytta-sml.jpg') no-repeat center center;
+}
+
+.info-sunday {
+  background: url('/images/helgaker-sml.jpg') no-repeat center center;
+}
+
+.main {
+    background: url('/images/forside8.jpg') no-repeat top left fixed;
+    //.b-cover;
+}
+
+.friday {
+    background: url('/images/skogstad-blur.jpg') no-repeat center center fixed;
+    //.b-cover;
+}
+
+.saturday {
+    background: url('/images/hytta-blur.jpg') no-repeat center center fixed;
+    //.b-cover;
+}
+
+.sunday {
+    background: url('/images/helgaker-blur.jpg') no-repeat center center fixed;
+    //.b-cover;
+}
+
+.slicer {
+  width: 100%;
+  position: relative;
+  background-color: @banner;
+  height: 1%;
+  text-align: center;
+  color: white;
+}
+
+.wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.scrollUp {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  opacity: 0.5;
+  position: fixed;
+  bottom: 110px;
+  right: 50px;
+  cursor: pointer;
+}
+
+.scrollDown {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  opacity: 0.5;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+}
+
+.arrow-down {
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid white;
+}
+
+.next-text {
+  font-size: 50px;
+  float: right;
+  right: 25px;
+  bottom: 25px;
+  position: absolute;
+  display: block;
+  color: white;
+  cursor: pointer;
+}

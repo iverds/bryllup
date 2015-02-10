@@ -1,0 +1,252 @@
+.skewed {
+  text-align: center;
+  color: @banner;
+  margin: 40px;
+  margin-top: 150px;
+  font-size: 40px;
+}
+.rouge {
+  font-family: 'Rouge Script', cursive;
+  color: @main;
+  font-size: 60px;
+  text-align: center;
+  margin: 40px;
+}
+
+.day {
+  color: @banner;
+  font-size: 60px;
+  text-align: center;
+  margin: 40px;
+}
+
+.smallBall {
+  background-color: @banner;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+
+.smallBall1 {
+  top: 40px;
+  left: 10px;
+}
+
+.smallBall2 {
+  top: 40px;
+  right: 10px;
+}
+
+.smallBall3 {
+  top: 45px;
+  left: 90px;
+}
+
+.smallBall4 {
+  top: 55px;
+  left: 220px;
+}
+
+.smallBall5 {
+  top: 50px;
+  left: 450px;
+}
+
+.smallBall6 {
+  top: 45px;
+  left: 660px;
+}
+
+.smallBall7 {
+  top: 75px;
+  left: 45px;
+}
+
+.smallBall8 {
+  top: 120px;
+  left: 55px;
+}
+
+.smallBall9 {
+  top: 165px;
+  left: 35px;
+}
+
+.smallBall10 {
+  top: 90px;
+  left: 680px;
+}
+
+.smallBall11 {
+  top: 150px;
+  left: 660px;
+}
+
+.smallBall12 {
+  top: 190px;
+  left: 690px;
+}
+
+.smallBallWrapper {
+  position: relative;
+}
+
+.invite {
+  background-color: #a7d4cd;
+  position: relative;
+  color: @white;
+  text-align: center;
+  margin: 40px;
+  font-size: 40px;
+  padding: 20px;
+}
+
+.invite:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  border-top: 40px solid transparent;
+  border-left: 30px solid @white;
+  border-bottom: 40px solid transparent;
+  margin: -20px 0px 0 0px;
+}
+
+.invite:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 0;
+  border-top: 40px solid transparent;
+  border-right: 30px solid @white;
+  border-bottom: 40px solid transparent;
+  margin: -20px 0px 0 0px;
+}
+
+.invitation-wrapper {
+
+}
+
+hr.dotted {
+  border-top: 5px dotted @main;
+  color: #fff;
+  background-color: #fff;
+  height: 5px;
+  width:50%;
+}
+
+.invitation {
+  margin: 0 auto;
+  background-color: @white;
+  width: 800px;
+  height: 90%;
+  top: 5%;
+}
+
+/* basic css */
+.answer {
+
+  font-size: 30px;
+  height: 44px;
+  padding: 40px;
+
+  .form-group {
+    width: 50%;
+    float: left;
+  }
+}
+
+
+
+#check-awesome         {
+  position:relative;
+
+  input[type=radio]   { display:none; }
+  label, p               { padding-left:50px; }
+
+  /* checkbox css */
+  label                  { cursor:pointer; }
+  label div
+  {
+    display:block;
+    position:absolute;
+    left:0;
+    -webkit-transition-duration:0.3s;
+    -moz-transition-duration:0.3s;
+    transition-duration:0.3s;
+  }
+  label .circle          {
+    background:#FFF;
+    left:-30px;
+    top:-30px;
+    height:160px;
+    width:160px;
+    z-index:-1;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+  }
+  label .box {
+    border:2px solid #000;
+    height:40px;
+    width:40px;
+    z-index:888;
+    -webkit-transition-delay:0.2s;
+    -moz-transition-delay:0.2s;
+    transition-delay:0.2s;
+  }
+  label .check         {
+    top: -7px;
+    left: 6px;
+    width: 24px;
+    height: 48px;
+    border:2px solid #0f9d58;
+    border-top: none;
+    border-left: none;
+    opacity:0;
+    z-index:888;
+    -webkit-transform:rotate(180deg); -moz-transform:rotate(180deg); transform:rotate(180deg);
+    -webkit-transition-delay:0.3s; -moz-transition-delay:0.3s; transition-delay:0.3s;
+  }
+
+  /* handling click events */
+
+  /* when checkbox is checked */
+  label .circle {
+    -webkit-animation   :growCircle 0.3s ease;
+    -moz-animation      :growCircle 0.3s ease;
+    animation           :growCircle 0.3s ease;
+  }
+  input[type=radio]:checked ~ label .box {
+    opacity:0;
+    -webkit-transform :scale(0) rotate(-180deg);
+    -moz-transform 		:scale(0) rotate(-180deg);
+    transform 				:scale(0) rotate(-180deg);
+  }
+  input[type=radio]:checked ~ label .check {
+    opacity:1;
+    -webkit-transform   :scale(1) rotate(45deg);
+    -moz-transform      :scale(1) rotate(45deg);
+    transform           :scale(1) rotate(45deg);
+  }
+}
+
+
+
+/* bubble animation */
+
+@-webkit-keyframes growCircle {
+  0%, 100%   { -webkit-transform:scale(0); }
+  70%        { background:#DDD; -webkit-transform:scale(1.25); }
+}
+@-moz-keyframes growCircle {
+  0%, 100%   { -moz-transform:scale(0); }
+  70%        { background:#DDD; -moz-transform:scale(1.25); }
+}
+@keyframes growCircle {
+  0%, 100%   { transform:scale(0); }
+  70%        { background:#DDD; transform:scale(1.25); }
+}
