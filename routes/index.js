@@ -11,5 +11,4 @@ router.get('/invitation', function(req, res) {
   res.render('invitation', { title: 'Kine og Iver' });
 });
 
-
 module.exports = router;
